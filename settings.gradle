@@ -1,3 +1,5 @@
 rootProject.name = 'order-service'
 include 'core-api'
+include 'domain'
+include 'internal-api'
 
