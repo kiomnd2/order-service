@@ -1,5 +1,6 @@
 package com.subprj.domain;
 
+import com.subprj.common.utils.TokenGenerateUtil;
 import com.subprj.domain.orderItem.OrderItem;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,8 @@ public class Order {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String orderToken;
     private String orderName;
     private ZonedDateTime orderAt;
     @Embedded
@@ -28,6 +31,7 @@ public class Order {
     @Builder
     public Order(String orderName, ZonedDateTime orderAt, DeliveryInfo deliveryInfo
             , PaymentInfo paymentInfo, List<OrderItem> itemList) {
+        this.orderToken = TokenGenerateUtil.generateToken();
         this.orderName = orderName;
         this.orderAt = orderAt;
         this.deliveryInfo = deliveryInfo;

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +17,13 @@ public class OrderItem {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String itemName;
+    private BigDecimal itemAmount;
     private Integer itemCount;
 
     @Builder
-    public OrderItem(String itemName, Integer itemCount) {
+    public OrderItem(String itemName, BigDecimal itemAmount, Integer itemCount) {
         this.itemName = itemName;
+        this.itemAmount = itemAmount;
         this.itemCount = itemCount;
     }
 }
