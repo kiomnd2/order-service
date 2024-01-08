@@ -2,4 +2,8 @@ rootProject.name = 'order-service'
 include 'core-api'
 include 'domain'
 include 'internal-api'
+include 'domain:order'
+findProject(':domain:order')?.name = 'order'
+include 'internal-api:order'
+findProject(':internal-api:order')?.name = 'order'
 
