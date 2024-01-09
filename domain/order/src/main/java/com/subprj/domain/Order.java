@@ -3,6 +3,7 @@ package com.subprj.domain;
 import com.subprj.common.utils.TokenGenerateUtil;
 import com.subprj.domain.orderItem.OrderItem;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     private String orderToken;
     private String orderName;
     private ZonedDateTime orderAt;

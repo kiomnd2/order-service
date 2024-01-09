@@ -1,5 +1,6 @@
 package com.subprj.domain;
 
+import com.subprj.domain.orderItem.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,13 +22,39 @@ public class OrderCommand {
         private final String payer;
         private final String paymentMethod;
         private final List<RegisterOrderItem> itemList;
+
+        public Order toEntity() {
+            return Order.builder()
+                    .orderName(orderName)
+                    .deliveryInfo(DeliveryInfo.builder()
+                            .receiverName(receiverName)
+                            .receiverPhoneNumber(payer)
+                            .zipCode(zipCode)
+                            .address1(address1)
+                            .address2(address2)
+                            .build())
+                    .paymentInfo(PaymentInfo.builder()
+                            .payer(payer)
+                            .paymentMethod(PaymentInfo.PaymentMethod.valueOf(paymentMethod))
+                            .build())
+                    .itemList(itemList.stream().map(RegisterOrderItem::toEntity).toList())
+                    .build();
+        }
     }
 
     @Getter
     @AllArgsConstructor
     public static class RegisterOrderItem {
         private final String itemName;
-        private final String itemCount;
+        private final Integer itemCount;
         private final BigDecimal itemAmount;
+
+        public OrderItem toEntity() {
+            return OrderItem.builder()
+                    .itemName(itemName)
+                    .itemCount(itemCount)
+                    .itemAmount(itemAmount)
+                    .build();
+        }
     }
 }
