@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     private final OrderStore orderStore;
 
+
     public String registerOrder(OrderCommand.RegisterOrder registerOrder) {
         return orderStore.store(registerOrder.toEntity()).getOrderToken();
     }
