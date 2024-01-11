@@ -6,4 +6,8 @@ include 'domain:order'
 findProject(':domain:order')?.name = 'order'
 include 'internal-api:order'
 findProject(':internal-api:order')?.name = 'order'
+include 'domain:ticket'
+findProject(':domain:ticket')?.name = 'ticket'
+include 'domain:kitchen'
+findProject(':domain:kitchen')?.name = 'kitchen'
 
